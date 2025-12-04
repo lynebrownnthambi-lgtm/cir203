@@ -1,0 +1,77 @@
+
+
+def create_node(name, admission_no, grades):
+    return {
+        "name": name,
+        "admission_no": admission_no,
+        "grades": grades,
+        "next": None
+    }
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def add_student(self, name, admission_no, grades):
+        new_node = create_node(name, admission_no, grades)
+
+        if self.head is None:
+            self.head = new_node
+        else:
+            current = self.head
+            while current["next"] is not None:
+                current = current["next"]
+            current["next"] = new_node
+
+    def display(self):
+        current = self.head
+        while current is not None:
+            print("----- Student -----")
+            print("Name:", current["name"])
+            print("Admission No:", current["admission_no"])
+            print("Grades:")
+            for unit, score in current["grades"].items():
+                print(f"  {unit}: {score}")
+            print()
+            current = current["next"]
+
+
+
+students = LinkedList()
+
+
+students.add_student(
+    "Benjamin",
+    "CIM/00100/024",
+    {
+        "CIR201": 82,
+        "CIR203": 75,
+        "CIR205": 88
+    }
+)
+
+
+students.add_student(
+    "Britte",
+    "CIM/00034/024",
+    {
+        "CIR201": 91,
+        "CIR203": 79,
+        "CIR205": 84
+    }
+)
+
+
+students.add_student(
+    "Briton",
+    "CIM/00011/024",
+    {
+        "CIR201": 69,
+        "CIR203": 72,
+        "CIR205": 80
+    }
+)
+
+
+students.display()
